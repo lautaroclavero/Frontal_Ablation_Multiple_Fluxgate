@@ -13,10 +13,10 @@ Code for calculating frontal ablation (calving + subaqueous melt) using the **mu
 
 This repository contains two independent routines:
 
-| Routine             | Temporal resolution | Period    | Output   |
-| ------------------- | ------------------- | --------- | -------- |
-| `FA_annual.py`      | Annual              | 2013–2023 | Mm³/year |
-| `FA_subseasonal.py` | 40–90 day intervals | 2017–2024 | m³/day   |
+| Routine | Temporal resolution | Period | Output |
+|---------|--------------------|--------|--------|
+| `FA_annual.py` | Annual | 2013–2023 | Mm³/year |
+| `FA_subseasonal.py` | 40–90 day intervals | 2017–2024 | m³/day |
 
 Each routine follows a three-step workflow:
 
@@ -68,7 +68,7 @@ conda env create -f environment.yml
 conda activate manso_fa
 Use Anaconda or Miniconda. Installation via pip only is not recommended due to geospatial dependencies.
 
-Tested environment
+Tested environment:
 
 OS: Windows 10 (Anaconda Prompt)
 
@@ -82,15 +82,12 @@ gdal: 3.6
 
 Usage
 Annual calculation
-
 bash
 python FA_annual.py
 Subseasonal calculation
-
 bash
 python FA_subseasonal.py
 Generate figures
-
 bash
 python FA_annual_visualization.py
 python FA_subseasonal_visualization.py
@@ -100,7 +97,6 @@ Data
 All input data are included in Input_Data_Manso/.
 
 Raster data (GeoTIFF)
-
 Glacier masks: binary rasters used to define calving front position.
 
 Surface velocity fields:
@@ -122,16 +118,12 @@ spatial smoothing (3×3 filter)
 Ice thickness: reference raster (2012) used for flux calculations.
 
 Vector data (ESRI Shapefile)
-
-Flowlines: MultiPoint geometries (3 m spacing) with attributes:
-
-LINE_ID, ID, DIST, X, Y
+Flowlines: MultiPoint geometries (3 m spacing) with attributes: LINE_ID, ID, DIST, X, Y
 
 Stable bedrock polygons: used to estimate velocity uncertainty (NMAD).
 
 File naming conventions
-
-Annual data
+Annual data:
 
 Velocities: YYYY.tif
 
@@ -139,7 +131,7 @@ Processed: YYYY_final.tif
 
 Masks: YYYY_mask.tif
 
-Subseasonal data
+Subseasonal data:
 
 Masks: YYYYMMDD_mask.tif
 
@@ -159,29 +151,27 @@ Figures are also generated and saved automatically.
 
 Troubleshooting
 PROJ errors (proj.db not found)
-
 If you see errors like:
 
 text
 ERROR 1: PROJ: proj_identify: Cannot find proj.db
-Run:
+Run in the terminal (Windows):
 
 bash
 set PROJ_LIB=%CONDA_PREFIX%\Library\share\proj
-Or in Python:
+Or add this to the top of your Python script:
 
 python
 import os
 os.environ["PROJ_LIB"] = os.path.join(os.environ["CONDA_PREFIX"], "Library", "share", "proj")
 Verify installation
-
 bash
 python -c "import rasterio; print('Rasterio OK')"
 Citation
 If you use this code, please cite:
 
-Clavero, L., et al., in press. Frontal ablation trends of Manso Glacier, Northern Patagonia. Journal of Glaciology. DOI: to be added after publication
-
+text
+Clavero, L., et al. (in press). Frontal ablation trends of Manso Glacier, Northern Patagonia. Journal of Glaciology. DOI: to be added after publication.
 bibtex
 @software{clavero_manso_fa_2026,
   author = {Clavero, Lautaro},
