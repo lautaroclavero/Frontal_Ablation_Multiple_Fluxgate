@@ -71,66 +71,26 @@ conda env create -f environment.yml
 conda activate manso_fa
 ```
 
-Use Anaconda or Miniconda.  
-Pip-only installation is not recommended due to geospatial dependencies.
+---
 
-### Tested environment
+## Tested environment
 
-- OS: Windows 10 (Anaconda Prompt)  
-- Python: 3.10  
-- geopandas: 0.14  
-- rasterio: 1.3  
-- gdal: 3.6  
+- OS: Windows 10
+- Python: 3.10
+- geopandas: 0.14
+- rasterio: 1.3
+- gdal: 3.6
 
 ---
 
 ## Usage
 
-### Annual calculation
 ```bash
 python FA_annual.py
-```
-
-### Subseasonal calculation
-```bash
 python FA_subseasonal.py
-```
-
-### Generate figures
-```bash
 python FA_annual_visualization.py
 python FA_subseasonal_visualization.py
 ```
-
-Outputs are saved in the `output/` directory.
-
----
-
-## Data
-
-All input data are included in `Input_Data_Manso/`.
-
-### Raster data (GeoTIFF)
-
-- Glacier masks: binary rasters defining calving front position  
-- Surface velocity fields:
-  - vels_raw/
-  - vels_final/
-
-Processing:
-- directional filtering using terrain aspect  
-- removal of inconsistent flow directions (>60°)  
-- spline interpolation  
-- 3×3 spatial smoothing  
-
-Ice thickness: reference raster (2012) used for flux calculations.
-
-### Vector data (ESRI Shapefile)
-
-Flowlines: MultiPoint geometries (3 m spacing) with attributes:
-- LINE_ID, ID, DIST, X, Y  
-
-Stable bedrock polygons: used for velocity uncertainty (NMAD)
 
 ---
 
@@ -147,15 +107,8 @@ Stable bedrock polygons: used for velocity uncertainty (NMAD)
 
 ## Troubleshooting
 
-PROJ errors:
-```
+```bash
 set PROJ_LIB=%CONDA_PREFIX%\Library\share\proj
-```
-
-or in Python:
-```python
-import os
-os.environ["PROJ_LIB"] = os.path.join(os.environ["CONDA_PREFIX"], "Library", "share", "proj")
 ```
 
 ---
@@ -164,8 +117,6 @@ os.environ["PROJ_LIB"] = os.path.join(os.environ["CONDA_PREFIX"], "Library", "sh
 
 Clavero, L., et al., in press.  
 Frontal ablation trends of Manso Glacier, Northern Patagonia. Journal of Glaciology.
-
-DOI: to be added after publication
 
 ```bibtex
 @software{clavero_manso_fa_2026,
@@ -187,4 +138,4 @@ Lautaro Clavero – lclavero@mendoza-conicet.gob.ar
 
 ## License
 
-MIT License – see LICENSE file
+MIT License
