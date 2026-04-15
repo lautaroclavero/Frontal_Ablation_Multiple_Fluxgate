@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+title: "Frontal ablation trends of Manso Glacier, Northern Patagonia"
+message: "If you use this code, please cite the associated paper."
+type: software
+authors:
+  - family-names: Clavero
+    given-names: Lautaro
+year: 2026
+version: 1.0.0
+url: "https://github.com/lautaroclavero/Frontal_Ablation_Multiple_Fluxgate"
+license: MIT

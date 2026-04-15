@@ -1,0 +1,10 @@
+# Python
+__pycache__/
+*.pyc
+
+# Outputs 
+output/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
