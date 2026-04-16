@@ -1,30 +1,31 @@
 # -*- coding: utf-8 -*-
 """
 Plot timeseries at flowline level and for the entire glacier.
+Figure saved to output/figures/Figure_subseasonal.png
+
 """
 
 import pandas as pd
 import seaborn as sns
+import matplotlib
+matplotlib.use('TkAgg')  
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib.ticker import ScalarFormatter
 from datetime import datetime
 from pathlib import Path
-import matplotlib
 
-# BACKEND
-matplotlib.use('Agg')
-
-#  CONFIG GLOBAL
+# CONFIG GLOBAL
 sns.set_theme(style="ticks")
 sns.set_context("talk", font_scale=1)
-plt.rcParams['figure.dpi'] = 150
+plt.rcParams['figure.dpi'] = 300
 
+SCRIPT_DIR = Path(__file__).parent
 
-df_flow = pd.read_csv('output/subseasonal/flowlines_results.csv',
+df_flow = pd.read_csv(SCRIPT_DIR / 'output/subseasonal/flowlines_results.csv',
                       parse_dates=['Start_Date', 'End_Date'])
 
-df_FA = pd.read_csv('output/subseasonal/frontal_ablation_results.csv',
+df_FA = pd.read_csv(SCRIPT_DIR / 'output/subseasonal/frontal_ablation_results.csv',
                     parse_dates=['Start', 'End'])
 
 df_FA['upper'] = df_FA['Frontal_ablation_m3d'] + df_FA['Err_Frontal_ablation']
@@ -35,7 +36,6 @@ palette_centro = sns.blend_palette(["lightcoral", "red", "lightcoral"], n_colors
 palette_centro[2] = "darkred"
 palette_norte = sns.blend_palette(["lightblue", "blue"], n_colors=5)[::-1]
 paleta_completa = palette_sur + palette_centro + palette_norte
-
 
 fig, axs = plt.subplots(5, 1, sharex=True, figsize=(12, 15), dpi=300)
 
@@ -106,7 +106,6 @@ axs[4].xaxis.set_major_formatter(mdates.DateFormatter('%Y'))
 axs[4].tick_params(axis='x', which='major', labelsize=18, pad=18)
 axs[4].tick_params(axis='x', which='minor', labelsize=14)
 
-#  spacing 
 plt.subplots_adjust(hspace=0.05)
 
 plt.tight_layout(rect=[0, 0, 0.88, 1])
@@ -114,5 +113,6 @@ output_fig_dir = SCRIPT_DIR / "output" / "figures"
 output_fig_dir.mkdir(parents=True, exist_ok=True)
 
 plt.savefig(output_fig_dir / "Figure_subseasonal.png", dpi=300, bbox_inches='tight')
+print(f"Figure saved to {output_fig_dir / 'Figure_subseasonal.png'}")
 
 plt.show()

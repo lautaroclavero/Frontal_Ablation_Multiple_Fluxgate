@@ -1,23 +1,22 @@
 # -*- coding: utf-8 -*-
 """
 Plot annual frontal ablation results.
+Figure saved to output/figures/Figure_annual.png
+
 """
 
 import pandas as pd
+import matplotlib
+matplotlib.use('TkAgg')  
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 import seaborn as sns
 from pathlib import Path
-import matplotlib
-
-#  BACKEND 
-matplotlib.use('Agg')
 
 # CONFIG GLOBAL
 sns.set_theme(style="ticks")
 sns.set_context("talk", font_scale=1, rc={"lines.linewidth": 2.5})
-mpl.rcParams['figure.dpi'] = 150
-
+mpl.rcParams['figure.dpi'] = 300
 
 SCRIPT_DIR = Path(__file__).parent
 
@@ -43,7 +42,6 @@ tick_size_y = 22
 x_pad = 0.5
 
 y_pad = {'Ut': 10, 'dL/dt': 50, 'Uc': 50, 'Ht': 10, 'FA': 0.5}
-
 
 fig, axes = plt.subplots(nrows=5, ncols=1, figsize=(20, 20), sharex=True, dpi=300)
 
@@ -107,12 +105,12 @@ axes[4].set_xlim(x.min() - x_pad, x.max() + x_pad)
 for ax in axes[:4]:
     ax.tick_params(axis='x', labelbottom=False)
 
-# FIX layout 
 plt.tight_layout(rect=[0, 0, 0.88, 1])
 
 output_fig_dir = SCRIPT_DIR / "output" / "figures"
 output_fig_dir.mkdir(parents=True, exist_ok=True)
 
 plt.savefig(output_fig_dir / "Figure_annual.png", dpi=300, bbox_inches='tight')
+print(f"Figure saved to {output_fig_dir / 'Figure_annual.png'}")
 
 plt.show()
