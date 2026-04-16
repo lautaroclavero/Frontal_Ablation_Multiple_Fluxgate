@@ -2,12 +2,11 @@
 """
 Plot annual frontal ablation results.
 Figure saved to output/figures/Figure_annual.png
-
 """
 
 import pandas as pd
 import matplotlib
-matplotlib.use('TkAgg')  
+matplotlib.use('Agg')  
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 import seaborn as sns
@@ -112,5 +111,3 @@ output_fig_dir.mkdir(parents=True, exist_ok=True)
 
 plt.savefig(output_fig_dir / "Figure_annual.png", dpi=300, bbox_inches='tight')
 print(f"Figure saved to {output_fig_dir / 'Figure_annual.png'}")
-
-plt.show()

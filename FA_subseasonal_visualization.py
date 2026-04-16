@@ -2,13 +2,12 @@
 """
 Plot timeseries at flowline level and for the entire glacier.
 Figure saved to output/figures/Figure_subseasonal.png
-
 """
 
 import pandas as pd
 import seaborn as sns
 import matplotlib
-matplotlib.use('TkAgg')  
+matplotlib.use('Agg')  
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib.ticker import ScalarFormatter
@@ -114,5 +113,3 @@ output_fig_dir.mkdir(parents=True, exist_ok=True)
 
 plt.savefig(output_fig_dir / "Figure_subseasonal.png", dpi=300, bbox_inches='tight')
 print(f"Figure saved to {output_fig_dir / 'Figure_subseasonal.png'}")
-
-plt.show()
